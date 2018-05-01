@@ -1,18 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import * as actions from './actions';
-import * as getters from './getters';
-
-import count from './modules/count';
+import trending from './modules/trending';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-    actions,
-    getters,
     modules: {
-        count
+        trending
     },
     strict: false
 });
