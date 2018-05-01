@@ -46,3 +46,5 @@ reports
 .cache
 .happypack
 package-lock.json
+dist
+config/host.js
