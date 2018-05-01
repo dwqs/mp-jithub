@@ -14,9 +14,9 @@
         "commitmsg": "npx commitlint -e"
     },
     "dependencies": {
+        "async-await-error-handling": "^0.5.2",
         "mpvue": "^1.0.9",
-        "vuex": "^3.0.1",
-        "revuejs": "^1.0.1"
+        "vuex": "^3.0.1"
     },
     "devDependencies": {
         "@commitlint/cli": "^6.1.3",
@@ -25,6 +25,7 @@
         "babel-core": "^6.26.0",
         "babel-eslint": "^8.2.2",
         "babel-loader": "^7.1.4",
+        "babel-plugin-transform-async-to-promises": "^0.6.1",
         "babel-preset-env": "^1.6.1",
         "babel-preset-stage-2": "^6.24.1",
         "copy-webpack-plugin": "^4.5.1",
