@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import App from './App';
+import App from './app';
 import store from './vuex/index';
 
 Vue.prototype.$store = store;
@@ -10,18 +10,15 @@ const app = new Vue(App);
 app.$mount();
 
 export default {
-    // 这个字段走 app.json
     config: {
         pages: [
-            'pages/logs/logs', 
-            '^pages/index/index', 
-            'pages/counter/counter'
+            '^pages/index/index'
         ],
         window: {
             backgroundTextStyle: 'light',
             navigationBarBackgroundColor: '#fff',
-            navigationBarTitleText: 'WeChat',
+            navigationBarTitleText: 'Jithub',
             navigationBarTextStyle: 'black'
         }
     }
-}
+};
