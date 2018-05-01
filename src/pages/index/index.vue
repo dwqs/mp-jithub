@@ -1,17 +1,26 @@
 <template>
     <div>
         用户信息：{{userInfo.nickName}}
+        <loading></loading>
     </div>
 </template>
 
 <script>
     import { mapActions, mapGetters } from 'vuex';
+
+    import loading from '@src/components/loading/index';
+
     export default {
         data () {
             return {
                 userInfo: {}
             };
         },
+
+        components: {
+            loading
+        },
+
         methods: {
             ...mapActions([
                 'setTrendingLoading',
