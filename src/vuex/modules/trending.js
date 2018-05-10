@@ -24,26 +24,29 @@ const actions = {
 
     async getTrendingRepos ({ commit }, payload) {
         const [err, res] = await awaitTo(api.getTrendingRepos());
-        console.log('1111111', res);
-        if (err) {
-
+        
+        if (!err && res.data.code === 0) {
+            commit({
+                type: CONSTANT.GET_TRNEDING_REPOS,
+                res: res.data.repos
+            });
         } else {
-
+            commit({
+                type: CONSTANT.GET_TRNEDING_REPOS,
+                res: []
+            });
         }
-        commit({
-            type: CONSTANT.GET_TRNEDING_REPOS,
-            res: []
-        });
     }
 };
 
 const mutations = {
     [CONSTANT.GET_TRNEDING_REPOS] (state, payload) {
-
+        state.loading = false;
+        state.repos = payload.res;
     },
 
     [CONSTANT.SET_TRNEDING_LOADING] (state, payload) {
-        state.loading = payload;
+        state.loading = payload.value;
     }
 };
 
