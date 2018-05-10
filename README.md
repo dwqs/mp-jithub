@@ -1,5 +1,5 @@
 # mp-jithub
-Mini program for jithub.
+Mini program for Jithub/Github.
 
 ## LICENSE
 MIT
