@@ -1,6 +1,6 @@
 <template>
-    <div class="loading-wrapper">
-        <div class="lds-hourglass"></div>
+    <div id="loader">
+        <div></div>
     </div>
 </template>
 

@@ -43,7 +43,6 @@
         created () {
             this.getUserInfo();
             this.getTrendingRepos();
-            console.log('ssss', typeof Promise);
         }
     };
 </script>
