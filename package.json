@@ -15,7 +15,7 @@
     },
     "dependencies": {
         "async-await-error-handling": "^0.5.2",
-        "mpvue": "^1.0.9",
+        "mpvue": "^1.0.11",
         "vuex": "^3.0.1"
     },
     "devDependencies": {
@@ -40,8 +40,8 @@
         "husky": "^0.14.3",
         "less": "^3.0.1",
         "less-loader": "^4.1.0",
-        "mpvue-loader": "^1.0.11",
-        "mpvue-template-compiler": "^1.0.9",
+        "mpvue-loader": "^1.0.13",
+        "mpvue-template-compiler": "^1.0.11",
         "mpvue-webpack-target": "^1.0.0",
         "optimize-css-assets-webpack-plugin": "^3.2.0",
         "postcss-loader": "^2.1.3",
