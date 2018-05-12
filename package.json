@@ -15,6 +15,7 @@
     },
     "dependencies": {
         "async-await-error-handling": "^0.5.2",
+        "gitlang": "^1.0.1",
         "mpvue": "^1.0.11",
         "vuex": "^3.0.1"
     },
