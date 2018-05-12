@@ -136,6 +136,15 @@
         //     });
         // },
 
+        onShareAppMessage () {
+            return {
+                title: 'Jithub Trending',
+                desc: 'Jithub Trending - 通过小程序随时随地查看 Github Trending 榜单',
+                imageUrl: '',
+                path: '/pages/index/index'
+            };
+        },
+
         created () {
             this.getUserInfo();
             this.setTrendingLoading(true);
