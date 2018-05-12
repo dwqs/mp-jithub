@@ -1,0 +1,60 @@
+.trending-langs-page {
+    font-size: 24rpx;
+    color: #586069;
+}
+
+.lang-filter {
+    display: flex;
+    align-items: center;
+    position:fixed;
+    z-index: 99;
+    height:105rpx;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #f6f8fa;
+    padding: 20rpx;
+    border-bottom: 1rpx solid #dfe2e5;
+}
+
+.filter-text {
+    flex: 1;
+    padding: 5rpx 10rpx;
+    border: 1rpx solid #dfe2e5;
+    border-radius: 6rpx;
+    background-color: #fff;
+}
+
+.cancel-filter {
+    float: right;
+    width: 120rpx;
+    padding-left: 20rpx;
+}
+
+.trending-langs-list {
+    position:absolute;
+    top: 105rpx;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    .lang-item {
+        position: relative;
+        text-align: left;
+        border-bottom: 1px solid #eaecef;
+        overflow: hidden;
+        padding: 16rpx 20rpx;
+        &.selected {
+            color: #24292e;
+        }
+    }
+    .selected-icon {
+        float: right;
+        width: 6rpx;
+        height: 16rpx;
+        border: 4rpx solid #24292e;
+        border-top-color: transparent;
+        border-left-color: transparent;
+        transform: rotate(45deg) translate(-20rpx, 18rpx);
+    }
+}
