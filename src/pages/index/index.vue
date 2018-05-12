@@ -1,7 +1,15 @@
 <template>
     <div class="trending-wrap">
-        <refresh v-if="refreshing"></refresh>
-        <scroll-view class="trending-repos-list" scroll-y enable-back-to-top>
+        <!-- <refresh v-if="refreshing"></refresh> -->
+        <div class="show-query-info">
+            <span class="picker lang" @click="setLanguages">{{trending.lang ? trending.lang : 'All languages'}}</span>
+            <span class="picker picker-icon large-margin"></span>
+            <picker :range="dates" class="picker" @change="dateChange">
+                <span class="date">{{trending.since}}</span>
+            </picker>
+            <span class="picker picker-icon"></span>
+        </div>
+        <ul class="trending-repos-list" v-if="trending.repos.length">
             <li class="trending-item" v-for="(repo, index) in trending.repos" :key="index">
                 <div class="repo-name">
                     <h3>{{repo.username}} / {{repo.reponame}}</h3>
@@ -26,7 +34,16 @@
                     </span>
                 </div>
             </li>
-        </scroll-view>
+        </ul>
+        <div class="trending-repos-list empty-data" v-if="!trending.repos.length && !loading">
+            <h3 class="empty-title">
+                It looks like we don’t have any trending repositories for {{trending.lang}}.
+            </h3>
+            <p class="empty-desc">
+                If you create a {{trending.lang}} repository on Github, you can really own the place.<br/>
+                We’d even let it slide if you started calling yourself the mayor.
+            </p>
+        </div>
         <loading v-if="trending.loading"></loading>
     </div>
 </template>
@@ -34,21 +51,22 @@
 <script>
     import './index.less';
     import { mapActions, mapGetters } from 'vuex';
-    // #365
+
     import loading from '@src/components/loading/index.vue';
-    import refresh from '@src/components/refresh/index.vue';
+    // #365
+    // import refresh from '@src/components/refresh/index.vue';
 
     export default {
         data () {
             return {
                 userInfo: {},
-                refreshing: false
+                refreshing: false,
+                dates: ['daily', 'weekly', 'monthly']
             };
         },
 
         components: {
-            loading,
-            refresh
+            loading
         },
 
         computed: {
@@ -57,10 +75,24 @@
             })
         },
 
+        watch: {
+            'trending.lang' (val) {
+                if (!val) {
+                    this.getTrendingRepos({
+                        since: this.trending.since
+                    });
+                } else {
+                    this.filterTrendingRepos();
+                }
+            }
+        },
+
         methods: {
             ...mapActions([
                 'setTrendingLoading',
-                'getTrendingRepos'
+                'getTrendingRepos',
+                'filterTrendingRepos',
+                'setSince'
             ]),
             getUserInfo () {
                 // 调用登录接口
@@ -73,18 +105,36 @@
                         });
                     }
                 });
+            },
+
+            setLanguages () {
+                wx.navigateTo({
+                    url: '../lang/lang'
+                });
+            },
+
+            dateChange (e) {
+                const index = e.mp.detail.value;
+                this.setSince(this.dates[index]);
+                if (this.trending.lang) {
+                    this.filterTrendingRepos();
+                } else {
+                    this.getTrendingRepos({
+                        since: this.dates[index]
+                    });
+                }
             }
         },
 
-        onPullDownRefresh () {
-            wx.showNavigationBarLoading();
-            this.refreshing = true;
-            this.getTrendingRepos().then(() => {
-                wx.hideNavigationBarLoading();
-                this.refreshing = false;
-                wx.stopPullDownRefresh();
-            });
-        },
+        // onPullDownRefresh () {
+        //     wx.showNavigationBarLoading();
+        //     this.refreshing = true;
+        //     this.getTrendingRepos().then(() => {
+        //         wx.hideNavigationBarLoading();
+        //         this.refreshing = false;
+        //         wx.stopPullDownRefresh();
+        //     });
+        // },
 
         created () {
             this.getUserInfo();

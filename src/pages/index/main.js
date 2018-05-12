@@ -6,7 +6,7 @@ app.$mount();
 
 export default {
     config: {
-        enablePullDownRefresh: true,
+        enablePullDownRefresh: false,
         navigationBarTitleText: 'Jithub Trending'
     }
 };
