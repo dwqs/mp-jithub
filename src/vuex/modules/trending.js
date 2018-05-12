@@ -5,7 +5,9 @@ import api from '@src/network/api';
 
 const state = {
     repos: [],
-    loading: false
+    loading: false,
+    lang: '',
+    since: 'daily' // ['daily', 'weekly', 'monthly']
 };
 
 const getters = {
@@ -22,8 +24,38 @@ const actions = {
         });
     },
 
+    setSince ({ commit }, payload) {
+        commit({
+            type: CONSTANT.SET_SINCE,
+            value: payload
+        });
+    },
+
+    setLang ({ commit }, payload) {
+        commit({
+            type: CONSTANT.SET_LANG,
+            value: payload
+        });
+    },
+
     async getTrendingRepos ({ commit }, payload) {
-        const [err, res] = await awaitTo(api.getTrendingRepos());
+        const [err, res] = await awaitTo(api.getTrendingRepos(payload));
+        
+        if (!err && res.data.code === 0) {
+            commit({
+                type: CONSTANT.GET_TRNEDING_REPOS,
+                res: res.data.repos
+            });
+        } else {
+            commit({
+                type: CONSTANT.GET_TRNEDING_REPOS,
+                res: []
+            });
+        }
+    },
+
+    async filterTrendingRepos ({ commit, state }, payload) {
+        const [err, res] = await awaitTo(api.filterTrendingRepos(state.lang, { since: state.since }));
         
         if (!err && res.data.code === 0) {
             commit({
@@ -47,6 +79,18 @@ const mutations = {
 
     [CONSTANT.SET_TRNEDING_LOADING] (state, payload) {
         state.loading = payload.value;
+    },
+
+    [CONSTANT.SET_SINCE] (state, payload) {
+        state.since = payload.value;
+        state.loading = true;
+    },
+
+    [CONSTANT.SET_LANG] (state, payload) {
+        if (payload.value !== state.lang) {
+            state.lang = payload.value;
+            state.loading = true;
+        }
     }
 };
 
