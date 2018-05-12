@@ -12,7 +12,8 @@ app.$mount();
 export default {
     config: {
         pages: [
-            '^pages/index/index'
+            '^pages/index/index',
+            'pages/lang/lang'
         ],
         window: {
             backgroundTextStyle: 'light',
