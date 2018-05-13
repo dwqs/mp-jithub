@@ -86,8 +86,5 @@
         created () {
             this.selectedLang = this.trending.lang ? this.trending.lang : 'All Languages';
         }
-        // onUnload () {
-        //     this.setLang(this.selectedLang === 'All Languages' ? '' : this.selectedLang);
-        // }
     };
 </script>
