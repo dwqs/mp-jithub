@@ -61,6 +61,10 @@
 
             setCurLang (lang) {
                 this.selectedLang = lang;
+                this.setLang(this.selectedLang === 'All Languages' ? '' : this.selectedLang);
+                wx.navigateBack({
+                    delta: 1
+                });
             },
 
             valChange (e) {
@@ -81,10 +85,9 @@
 
         created () {
             this.selectedLang = this.trending.lang ? this.trending.lang : 'All Languages';
-        },
-
-        onUnload () {
-            this.setLang(this.selectedLang === 'All Languages' ? '' : this.selectedLang);
         }
+        // onUnload () {
+        //     this.setLang(this.selectedLang === 'All Languages' ? '' : this.selectedLang);
+        // }
     };
 </script>
