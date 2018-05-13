@@ -147,7 +147,7 @@
 
         created () {
             this.getUserInfo();
-            this.setTrendingLoading(true);
+            // this.setTrendingLoading(true);
             this.getTrendingRepos();
         }
     };

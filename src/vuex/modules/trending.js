@@ -5,7 +5,7 @@ import api from '@src/network/api';
 
 const state = {
     repos: [],
-    loading: false,
+    loading: true,
     lang: '',
     since: 'daily' // ['daily', 'weekly', 'monthly']
 };
