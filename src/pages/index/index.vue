@@ -35,7 +35,7 @@
                 </div>
             </li>
         </ul>
-        <div class="trending-repos-list empty-data" v-if="!trending.repos.length && !loading">
+        <div class="trending-repos-list empty-data" v-if="!trending.repos.length && !trending.loading">
             <h3 class="empty-title">
                 It looks like we don’t have any trending repositories for {{trending.lang}}.
             </h3>
