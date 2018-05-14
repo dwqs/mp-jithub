@@ -7,6 +7,7 @@ export default {
     },
 
     async filterTrendingRepos (lang, data = {}) {
+        lang = lang.split(' ').map(t => t.toLowerCase()).join('-');
         const res = await network.get(`/jithub/trending/${lang}`, data);
         return res;
     }
