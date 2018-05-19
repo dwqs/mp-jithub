@@ -9,7 +9,7 @@
             </picker>
             <span class="picker picker-icon"></span>
         </div>
-        <ul class="trending-repos-list" v-if="trending.repos.length">
+        <ul class="jithub-list trending-list" v-if="trending.repos.length">
             <li class="trending-item" v-for="(repo, index) in trending.repos" :key="index">
                 <div class="repo-name">
                     <h3>{{repo.username}} / {{repo.reponame}}</h3>
@@ -35,7 +35,7 @@
                 </div>
             </li>
         </ul>
-        <div class="trending-repos-list empty-data" v-if="!trending.repos.length && !trending.loading">
+        <div class="jithub-list empty-data" v-if="!trending.repos.length && !trending.loading">
             <h3 class="empty-title">
                 It looks like we don’t have any trending repositories for {{trending.lang}}.
             </h3>
@@ -109,7 +109,7 @@
 
             setLanguages () {
                 wx.navigateTo({
-                    url: '../lang/lang'
+                    url: '../lang/lang?from=trending'
                 });
             },
 
