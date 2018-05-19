@@ -1,0 +1,99 @@
+.github-rank-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    line-height: 1.5;
+    color: #24292e;
+    padding: 0;
+    margin: 0;
+}
+
+.rank-item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24rpx;
+    font-size: 28rpx;
+    border-bottom: 1rpx #e1e4e8 solid;
+}
+
+.rank-list {
+    bottom: 0;
+}
+
+.rank-scroll-view {
+    height: 100%;
+}
+
+.user-avatar {
+    width:128rpx;
+    height:128rpx;
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.user-meta-data {
+    display: flex;
+    flex: 1;
+    margin-left:15rpx;
+    padding: 0;
+    flex-direction: column;
+}
+
+.user-name, .user-location-email, .user-meta-info {
+    flex: 1;
+    span {
+        position: relative;
+        display: inline-block;
+    }
+}
+
+.login-name {
+    color: #0366d6
+}
+
+.nick-name {
+    margin-left: 16rpx;
+}
+
+.user-location-email {
+    color:#586069;
+}
+
+.user-meta-info {
+    .user-followers, .user-public-repos {
+        margin-left: 10rpx;
+    }
+    img {
+        width: 24rpx;
+        height: 24rpx;
+        vertical-align: -1rpx;
+    }
+}
+
+@keyframes refresh {
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+.loading-next-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100rpx;
+    font-size: 24rpx;
+    color: #586069;
+    img {
+        margin-right: 12rpx;
+        width: 30rpx;
+        height: 30rpx;
+        vertical-align: middle;
+        animation: refresh 1.5s linear forwards infinite;
+    }
+}
