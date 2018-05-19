@@ -32,9 +32,17 @@ const actions = {
         if (!err && res.statusCode <= 400) {
             const items = [].concat(res.data.items);
             const result = (payload && payload.page) ? [].concat(state.items) : [];
+            const promises = [];
+            // 优化请求：https://medium.freecodecamp.org/avoiding-the-async-await-hell-c77a0fb71c4c
             for (let i = 0; i < items.length; i++) {
                 const item = items[i];
-                const [e, r] = await awaitTo(api.getUserInfo(item.login));
+                const p = api.getUserInfo(item.login);
+                promises.push(p);
+            }
+
+            for (let j = 0; j < items.length; j++) {
+                const item = items[j];
+                const [e, r] = await awaitTo(promises[j]);
                 if (!e) {
                     const d = r.data;
                     item['meta_data'] = {
@@ -55,6 +63,7 @@ const actions = {
                 }
                 result.push(item);
             }
+
             commit({
                 type: CONSTANT.GET_RANK_DATA,
                 res: result,
