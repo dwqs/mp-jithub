@@ -34,13 +34,15 @@
                 langs: allLangs,
                 selectedLang: '',
                 focused: false,
-                val: ''
+                val: '',
+                from: ''
             };
         },
 
         computed: {
             ...mapGetters({
-                trending: 'getTrendingState'
+                trending: 'getTrendingState',
+                ranking: 'getRankingState'
             })
         },
 
@@ -56,12 +58,17 @@
 
         methods: {
             ...mapActions([
-                'setLang'
+                'setLang',
+                'setRankLang'
             ]),
 
             setCurLang (lang) {
                 this.selectedLang = lang;
-                this.setLang(this.selectedLang === 'All Languages' ? '' : this.selectedLang);
+                if (this.from === 'trending') {
+                    this.setLang(this.selectedLang === 'All Languages' ? '' : this.selectedLang);
+                } else if (this.from === 'ranking') {
+                    this.setRankLang(this.selectedLang === 'All Languages' ? '' : this.selectedLang);
+                }
                 wx.navigateBack({
                     delta: 1
                 });
@@ -85,6 +92,13 @@
 
         created () {
             this.selectedLang = this.trending.lang ? this.trending.lang : 'All Languages';
+        },
+
+        onShow () {
+            if (this.$root.$mp.query.from) {
+                this.from = this.$root.$mp.query.from;
+                this.selectedLang = this.from === 'trending' ? this.trending.lang : this.ranking.lang;
+            }
         }
     };
 </script>
