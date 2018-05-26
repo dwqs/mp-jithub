@@ -57,7 +57,7 @@
                     {{repoInfo['format_size'] ? repoInfo['format_size'] : 'N/A'}}
                 </span>
             </div>
-            <div class="common-flex owner" @click="enterUserDetail">
+            <div class="common-flex owner" v-if="!from" @click="enterUserDetail">
                 <span class="flex-item">
                     <img src="/static/images/owner.png">
                     Owner
@@ -86,7 +86,8 @@
                 userInfo: {},
                 loaded: false,
                 loading: false,
-                repo: {}
+                repo: {},
+                from: '' // 从 user repos list 进来则不显示 owner
             };
         },
 
@@ -144,6 +145,7 @@
         },
 
         onShow () {
+            this.from = this.$root.$mp.query.from ? this.$root.$mp.query.from : '';
             try {
                 const repo = wx.getStorageSync('repo-detail');
                 if (!repo) {

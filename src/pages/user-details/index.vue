@@ -118,7 +118,9 @@
             },  
 
             enterRepoList () {
-                console.log('repo list');
+                wx.navigateTo({
+                    url: `../repos-list/repos-list`
+                });
             }
         },
 
