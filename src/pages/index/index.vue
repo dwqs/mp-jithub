@@ -10,7 +10,7 @@
             <span class="picker picker-icon"></span>
         </div>
         <ul class="jithub-list trending-list" v-if="trending.repos.length">
-            <li class="trending-item" v-for="(repo, index) in trending.repos" :key="index">
+            <li class="trending-item" v-for="(repo, index) in trending.repos" :key="index" @click="enterRepo(repo)">
                 <div class="repo-name">
                     <h3>{{repo.username}} / {{repo.reponame}}</h3>
                 </div>
@@ -110,6 +110,23 @@
             setLanguages () {
                 wx.navigateTo({
                     url: '../lang/lang?from=trending'
+                });
+            },
+
+            enterRepo (repo) {                
+                try {
+                    wx.setStorageSync('repo-detail', JSON.stringify(repo));
+                } catch (e) {
+                    wx.showModal({
+                        title: '',
+                        content: '可能出现了一些错误, 请稍后再试',
+                        showCancel: false,
+                        confirmText: '我知道了'
+                    });
+                    return;
+                }
+                wx.navigateTo({
+                    url: `../repo-details/repo-details`
                 });
             },
 
