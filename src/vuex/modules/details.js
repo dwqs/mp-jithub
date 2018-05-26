@@ -6,7 +6,9 @@ import { formatDateToString, formatSize } from '@src/utils/index';
 
 const state = {
     repoInfo: {},
-    branches: []
+    branches: [],
+    userInfo: {},
+    userRepoList: []
 };
 
 const getters = {
@@ -16,6 +18,14 @@ const getters = {
 
     getBranches (state) {
         return state.branches;
+    },
+
+    getUserInfo (state) {
+        return state.userInfo;
+    },
+
+    getUserRepoList (state) {
+        return state.userRepoList;
     }
 };
 
@@ -53,6 +63,23 @@ const actions = {
             });
         }
         return res;
+    },
+
+    async getUserDefailtInfo ({ commit }, payload) {
+        const [err, res] = await awaitTo(api.getUserInfo(payload));
+        if (!err && res.statusCode <= 400) {
+            res.data['created_date'] = formatDateToString(new Date(res.data['created_at']));
+            commit({
+                type: CONSTANT.GET_USER_DETAIL,
+                res: res.data
+            });
+        } else {
+            commit({
+                type: CONSTANT.GET_USER_DETAIL,
+                res: undefined
+            });
+        }
+        return res;
     }
 };
 
@@ -65,6 +92,11 @@ const mutations = {
     [CONSTANT.GET_REPO_BRANCHES] (state, payload) {
         if (payload.res) {
             state.branches = [].concat(payload.res);
+        }
+    },
+    [CONSTANT.GET_USER_DETAIL] (state, payload) {
+        if (payload.res) {
+            state.userInfo = payload.res;
         }
     }
 };
