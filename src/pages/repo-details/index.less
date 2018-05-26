@@ -1,0 +1,117 @@
+.repo-details-page {
+    position: relative;
+    background-color: #f6f8f8;
+    font-size: 28rpx;
+    height: 100%;
+}
+
+.common-flex {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.repo-summary {
+    flex-direction: column;
+    min-height: 375rpx;
+    padding: 0 24rpx;
+
+    .summary-item {
+        text-align: center;
+    }
+
+    .repo-owner-avatar {
+        width: 128rpx;
+        height: 128rpx;
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%
+        }
+    }
+
+    .repo-name {
+        margin-top: 8rpx;
+        font-size: 32rpx;
+        color: #0366d6;
+    }
+    
+    .repo-description {
+        margin-top: 8rpx;
+        color: #586069;
+    }
+}
+
+.repo-meta-data {
+    font-size: 24rpx;
+    background-color: #ffffff;
+    height: 75rpx;
+    border-top: 1rpx solid #e1e4e8;
+    border-bottom: 1rpx solid #e1e4e8;
+
+    .repo-meta {
+        flex: 1;
+        height: 100%;
+        border-right: 1rpx solid #e1e4e8;
+        padding-left: 15rpx;
+        text-align: left;
+        span {
+            display: block;
+        }
+    }
+
+    .repo-stars, .repo-watchers, .repo-forks{
+        color: #586069;
+        font-weight: 700;
+        padding-top: 5rpx;
+    }
+}
+
+.repo-basic-info {
+    font-size: 24rpx;
+    margin-top: 40rpx;
+    margin-bottom: 40rpx;
+    background-color: #ffffff;
+    border-top: 1rpx solid #e1e4e8;
+    border-bottom: 1rpx solid #e1e4e8;
+    &>div {
+        height: 60rpx;
+        border-bottom: 1rpx solid #e1e4e8;
+        &.owner {
+            border-bottom: none
+        }
+    }
+    .flex-item {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        height: 100%;
+        text-align: left;
+        border-right: 1rpx solid #e1e4e8;
+    }
+
+    img {
+        width: 28rpx;
+        height: 28rpx;
+        vertical-align: -1rpx;
+        margin: 10rpx;
+    }
+}
+
+.right-arrow {
+    display: inline-block;
+    height: 16rpx;
+    width: 16rpx;
+    border: 1rpx solid transparent;
+    border-top: 1rpx solid #e1e4e8;
+    border-right: 1rpx solid #e1e4e8;
+    transform: rotate(45deg);
+}
+
+.more-info {
+    position:absolute;
+    right: 20rpx;
+    top: 30rpx;
+    transform:translateY(-50%);
+}

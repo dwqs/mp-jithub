@@ -15,7 +15,8 @@ export default {
         pages: [
             '^pages/index/index',
             'pages/lang/lang',
-            'pages/rank/rank'
+            'pages/rank/rank',
+            'pages/repo-details/repo-details'
         ],
         window: {
             backgroundTextStyle: 'light',
