@@ -7,3 +7,7 @@ export const SET_LANG = 'set_lang';
 // ranking page
 export const GET_RANK_DATA = 'get_rank_data';
 export const SET_RANK_LANG = 'set_rank_lang';
+
+// repo detail page
+export const GET_REPO_DETAIL = 'get_repo_detail';
+export const GET_REPO_BRANCHES = 'get_repo_branches';
