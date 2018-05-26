@@ -8,7 +8,12 @@ const state = {
     repoInfo: {},
     branches: [],
     userInfo: {},
-    userRepoList: []
+    userRepoList: [],
+    pageInfo: {
+        page: 1,
+        pageSize: 30,
+        isAll: false
+    }
 };
 
 const getters = {
@@ -26,6 +31,10 @@ const getters = {
 
     getUserRepoList (state) {
         return state.userRepoList;
+    },
+
+    getPageInfo (state) {
+        return state.pageInfo;
     }
 };
 
@@ -80,6 +89,29 @@ const actions = {
             });
         }
         return res;
+    },
+
+    async getUserRepos ({ commit, state }, payload) {
+        const { pageSize, page } = state.pageInfo;
+        const [err, res] = await awaitTo(api.getUserReposList(payload, pageSize, page));
+        if (!err && res.statusCode <= 400) {
+            commit({
+                type: CONSTANT.GET_USER_REPO_LIST,
+                res: res.data
+            });
+        } else {
+            commit({
+                type: CONSTANT.GET_USER_REPO_LIST,
+                res: undefined
+            });
+        }
+        return res;
+    },
+
+    resetData ({ commit, state }, payload) {
+        commit({
+            type: CONSTANT.RESET_USER_REPO_LIST
+        });
     }
 };
 
@@ -98,6 +130,27 @@ const mutations = {
         if (payload.res) {
             state.userInfo = payload.res;
         }
+    },
+
+    [CONSTANT.GET_USER_REPO_LIST] (state, payload) {
+        const { pageSize, page } = state.pageInfo;
+        if (payload.res) {
+            state.userRepoList = [].concat(state.userRepoList, payload.res);
+            state.pageInfo = {
+                page: payload.res.length < pageSize ? page : page + 1,
+                pageSize,
+                isAll: payload.res.length < pageSize
+            };
+        }
+    },
+
+    [CONSTANT.RESET_USER_REPO_LIST] (state, payload) {
+        state.pageInfo = {
+            page: 1,
+            pageSize: 30,
+            isAll: false
+        };
+        state.userRepoList = [];
     }
 };
 

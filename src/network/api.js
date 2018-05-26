@@ -43,5 +43,15 @@ export default {
         const { username, reponame } = payload;
         const res = await network.get(`/repos/${username}/${reponame}/branches`, auth);
         return res;
+    },
+
+    async getUserReposList (payload, pageSize, page) {
+        const res = await network.get(`/users/${payload}/repos`, {
+            page,
+            /* eslint-disable camelcase */
+            per_page: pageSize,
+            ...auth
+        });
+        return res;
     }
 };
