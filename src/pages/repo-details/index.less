@@ -1,4 +1,4 @@
-.repo-details-page {
+.repo-details-page, .user-details-page {
     position: relative;
     background-color: #f6f8f8;
     font-size: 28rpx;
@@ -12,7 +12,7 @@
     align-items: center;
 }
 
-.repo-summary {
+.repo-summary, .user-summary {
     flex-direction: column;
     min-height: 375rpx;
     padding: 0 24rpx;
@@ -21,7 +21,7 @@
         text-align: center;
     }
 
-    .repo-owner-avatar {
+    .repo-owner-avatar,  .user-avatar{
         width: 128rpx;
         height: 128rpx;
         img {
@@ -31,26 +31,26 @@
         }
     }
 
-    .repo-name {
+    .repo-name, .user-login-name {
         margin-top: 8rpx;
         font-size: 32rpx;
         color: #0366d6;
     }
     
-    .repo-description {
+    .repo-description, .user-bio {
         margin-top: 8rpx;
         color: #586069;
     }
 }
 
-.repo-meta-data {
+.repo-meta-data, .user-meta-data {
     font-size: 24rpx;
     background-color: #ffffff;
     height: 75rpx;
     border-top: 1rpx solid #e1e4e8;
     border-bottom: 1rpx solid #e1e4e8;
 
-    .repo-meta {
+    .repo-meta, .user-meta {
         flex: 1;
         height: 100%;
         border-right: 1rpx solid #e1e4e8;
@@ -61,14 +61,14 @@
         }
     }
 
-    .repo-stars, .repo-watchers, .repo-forks{
+    .repo-stars, .repo-watchers, .repo-forks, .user-follower, .user-following, .user-repos {
         color: #586069;
         font-weight: 700;
         padding-top: 5rpx;
     }
 }
 
-.repo-basic-info {
+.repo-basic-info, .user-basic-info {
     font-size: 24rpx;
     margin-top: 40rpx;
     margin-bottom: 40rpx;
