@@ -96,7 +96,6 @@
 
         computed: {
             ...mapGetters({
-                loading: 'getLoadingState',
                 repoInfo: 'getRepoDetailState',
                 branches: 'getBranches'
             })
@@ -129,7 +128,9 @@
             },  
 
             enterUserDetail () {
-                console.log('user detail');
+                wx.navigateTo({
+                    url: `../user-details/user-details?username=${this.repoInfo['owner'].login}`
+                });
             }
         },
 
@@ -158,17 +159,17 @@
                 });
                 return;
             }
-            this.loading = true;
+            
             wx.setNavigationBarTitle({
                 title: `${this.repo.username} / ${this.repo.reponame}` || 'Jithub'
             });
-
-            this.getRepoDetailInfo(this.repo).then(this.resetLoading).catch(this.resetLoading);
-            this.getRepoBranches(this.repo).then(this.resetLoading).catch(this.resetLoading);
         },
 
         mounted () {
             this.getUserInfo();
+            this.loading = true;
+            this.getRepoDetailInfo(this.repo).then(this.resetLoading).catch(this.resetLoading);
+            this.getRepoBranches(this.repo).then(this.resetLoading).catch(this.resetLoading);
         }
     };
 </script>
