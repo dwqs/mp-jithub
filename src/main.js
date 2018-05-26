@@ -17,7 +17,8 @@ export default {
             'pages/lang/lang',
             'pages/rank/rank',
             'pages/repo-details/repo-details',
-            'pages/user-details/user-details'
+            'pages/user-details/user-details',
+            'pages/repos-list/repos-list'
         ],
         window: {
             backgroundTextStyle: 'light',
