@@ -6,7 +6,7 @@
         </div>
         <div class="jithub-list rank-list" v-if="ranking.items.length">
             <scroll-view class="rank-scroll-view" scroll-y @scrolltolower="lower" enable-back-to-top :lower-threshold="150">
-                <li class="rank-item" v-for="(item, index) in ranking.items" :key="index">
+                <li class="rank-item" v-for="(item, index) in ranking.items" :key="index" @click="enterUserDetail(item)">
                     <div class="user-avatar">
                         <img :src="item.avatar_url" alt="avatar">
                     </div>
@@ -122,6 +122,12 @@
                         url: '../lang/lang?from=ranking'
                     });
                 }
+            },
+
+            enterUserDetail (user) {
+                wx.navigateTo({
+                    url: `../user-details/user-details?username=${user.login}`
+                });
             }
         },
 
