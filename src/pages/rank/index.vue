@@ -135,8 +135,11 @@
         },
 
         created () {
-            this.getUserInfo();
             this.getRankingData();
+        },
+
+        mounted () {
+            this.getUserInfo();
         }
     };
 </script>
