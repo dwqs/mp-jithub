@@ -56,3 +56,43 @@
     margin-top: 0;
     margin-bottom: 20px;
 }
+
+@keyframes refresh {
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+.loading-next-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100rpx;
+    font-size: 24rpx;
+    color: #586069;
+    img {
+        margin-right: 12rpx;
+        width: 30rpx;
+        height: 30rpx;
+        vertical-align: middle;
+        animation: refresh 1.5s linear forwards infinite;
+    }
+}
+
+.right-arrow {
+    display: inline-block;
+    height: 16rpx;
+    width: 16rpx;
+    border: 1rpx solid transparent;
+    border-top: 1rpx solid #f6f8f8;
+    border-right: 1rpx solid #f6f8f8;
+    transform: rotate(45deg);
+}
+
+.more-info {
+    position: absolute;
+    right: 20rpx;
+    top: 30rpx;
+    transform:translateY(-50%);
+}
+
