@@ -113,22 +113,14 @@
             enterRepoDetail (repo) {
                 const reponame = repo.name;
                 const username = repo.owner.login;
-                try {
-                    wx.setStorageSync('repo-detail', JSON.stringify({
-                        username,
-                        reponame
-                    }));
-                } catch (e) {
-                    wx.showModal({
-                        title: '',
-                        content: '可能出现了一些错误, 请稍后再试',
-                        showCancel: false,
-                        confirmText: '我知道了'
-                    });
-                    return;
-                }
+                // wx.showModal({
+                //     title: '',
+                //     content: '可能出现了一些错误, 请稍后再试',
+                //     showCancel: false,
+                //     confirmText: '我知道了'
+                // });
                 wx.navigateTo({
-                    url: `../repo-details/repo-details?from=owner`
+                    url: `../repo-details/repo-details?from=owner&username=${username}&reponame=${reponame}`
                 });
             }
         },

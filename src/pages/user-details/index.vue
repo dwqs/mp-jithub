@@ -126,10 +126,10 @@
 
         onShareAppMessage () {
             return {
-                title: `${this.userInfo.login} 的 Jithub 主页`,
-                desc: `这是 ${this.userInfo.login} 的 Jithub 主页`,
+                title: `${this.username} 的 Jithub 主页`,
+                desc: `这是 ${this.username} 的 Jithub 主页`,
                 imageUrl: '',
-                path: `/pages/user-details/user-details?username=${this.userInfo.login}`
+                path: `/pages/user-details/user-details?username=${this.username}`
             };
         },
 

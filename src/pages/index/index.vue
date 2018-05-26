@@ -113,20 +113,10 @@
                 });
             },
 
-            enterRepo (repo) {                
-                try {
-                    wx.setStorageSync('repo-detail', JSON.stringify(repo));
-                } catch (e) {
-                    wx.showModal({
-                        title: '',
-                        content: '可能出现了一些错误, 请稍后再试',
-                        showCancel: false,
-                        confirmText: '我知道了'
-                    });
-                    return;
-                }
+            enterRepo (repo) { 
+                const { username, reponame } = repo;
                 wx.navigateTo({
-                    url: `../repo-details/repo-details`
+                    url: `../repo-details/repo-details?from=list&username=${username}&reponame=${reponame}`
                 });
             },
 

@@ -57,7 +57,7 @@
                     {{repoInfo['format_size'] ? repoInfo['format_size'] : 'N/A'}}
                 </span>
             </div>
-            <div class="common-flex owner" v-if="!from" @click="enterUserDetail">
+            <div class="common-flex owner" v-if="from !== 'owner'" @click="enterUserDetail">
                 <span class="flex-item">
                     <img src="/static/images/owner.png">
                     Owner
@@ -129,41 +129,41 @@
             },  
 
             enterUserDetail () {
-                wx.navigateTo({
-                    url: `../user-details/user-details?username=${this.repoInfo['owner'].login}`
-                });
+                // 从首页列表进来
+                if (this.from === 'list') {
+                    wx.redirectTo({
+                        url: `../user-details/user-details?username=${this.repoInfo['owner'].login}`
+                    });
+                } else {
+                    wx.navigateTo({
+                        url: `../user-details/user-details?username=${this.repoInfo['owner'].login}`
+                    });
+                }
             }
         },
 
         onShareAppMessage () {
+            const { username, reponame } = this.repo;
             return {
-                title: `${this.repo.username} / ${this.repo.reponame}`,
-                desc: `${this.repo.description}`,
+                title: `${username} / ${reponame}`,
+                desc: `${this.repoInfo.description}`,
                 imageUrl: '',
-                path: '/pages/repo-details/repo-details'
+                path: `/pages/repo-details/repo-details?from=${this.from}&username=${username}&reponame=${reponame}`
             };
         },
 
         onShow () {
-            this.from = this.$root.$mp.query.from ? this.$root.$mp.query.from : '';
-            try {
-                const repo = wx.getStorageSync('repo-detail');
-                if (!repo) {
-                    throw new Error();
-                }
-                this.repo = { ...JSON.parse(repo) };
-            } catch (e) {
-                wx.showModal({
-                    title: '',
-                    content: '可能出现了一些错误, 请稍后再试',
-                    showCancel: false,
-                    confirmText: '我知道了'
-                });
-                return;
-            }
+            const { username, reponame, from } = this.$root.$mp.query;
+
+            /* eslint-disable no-unneeded-ternary */
+            this.from = from ? from : '';
+            this.repo = {
+                username,
+                reponame
+            };
             
             wx.setNavigationBarTitle({
-                title: `${this.repo.username} / ${this.repo.reponame}` || 'Jithub'
+                title: `${username} / ${reponame}` || 'Jithub'
             });
         },
 
