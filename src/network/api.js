@@ -31,5 +31,17 @@ export default {
     async getUserInfo (username) {
         const res = await network.get(`/users/${username}`, auth);
         return res;
+    },
+
+    async getRepoDetailInfo (payload) {
+        const { username, reponame } = payload;
+        const res = await network.get(`/repos/${username}/${reponame}`, auth);
+        return res;
+    },
+
+    async getRepoBranches (payload) {
+        const { username, reponame } = payload;
+        const res = await network.get(`/repos/${username}/${reponame}/branches`, auth);
+        return res;
     }
 };
