@@ -61,7 +61,8 @@
             return {
                 userInfo: {},
                 refreshing: false,
-                dates: ['daily', 'weekly', 'monthly']
+                dates: ['daily', 'weekly', 'monthly'],
+                version: '1.1.0'
             };
         },
 
@@ -156,6 +157,24 @@
             this.getUserInfo();
             // this.setTrendingLoading(true);
             this.getTrendingRepos();
+        },
+
+        mounted () {
+            // 版本检测
+            try {
+                const v = wx.getStorageSync('version');
+                if (!v || v !== this.version) {
+                    wx.showModal({
+                        title: '',
+                        content: '列表页支持点击查看仓库详情和用户详情了',
+                        showCancel: false,
+                        confirmText: '我知道了'
+                    });
+                    wx.setStorageSync('version', this.version);
+                }
+            } catch (e) {
+
+            }
         }
     };
 </script>
