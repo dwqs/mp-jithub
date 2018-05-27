@@ -27,6 +27,7 @@ export const token = 'github personal token'; // 详见: https://developer.githu
 
 * Trending 和 Ranking 支持点击查看详情
 * 支持查看个人的仓库列表
+* 优化 Ranking 页的头像展示
 
 #### 1.0.8
 * 增加 Github 中国区用户排行榜页面：[Search users](https://developer.github.com/v3/search/#search-users) [Single user](https://developer.github.com/v3/users/#get-a-single-user)
