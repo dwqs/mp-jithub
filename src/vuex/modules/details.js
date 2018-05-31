@@ -110,12 +110,31 @@ const actions = {
 
     resetData ({ commit, state }, payload) {
         commit({
-            type: CONSTANT.RESET_USER_REPO_LIST
+            type: CONSTANT.RESET_DETAIL_INFO,
+            res: payload
         });
     }
 };
 
 const mutations = {
+    [CONSTANT.RESET_DETAIL_INFO] (state, payload) {
+        if (payload.res === 1) {
+            // user detail
+            state.userInfo = {};
+        } else if (payload.res === 2) {
+            // repo detail
+            state.repoInfo = {};
+            state.branches = [];
+        } else if (payload.res === 3) {
+            // repos list
+            state.pageInfo = {
+                page: 1,
+                pageSize: 30,
+                isAll: false
+            };
+            state.userRepoList = [];
+        }
+    },
     [CONSTANT.GET_REPO_DETAIL] (state, payload) {
         if (payload.res) {
             state.repoInfo = payload.res;
@@ -142,15 +161,6 @@ const mutations = {
                 isAll: payload.res.length < pageSize
             };
         }
-    },
-
-    [CONSTANT.RESET_USER_REPO_LIST] (state, payload) {
-        state.pageInfo = {
-            page: 1,
-            pageSize: 30,
-            isAll: false
-        };
-        state.userRepoList = [];
     }
 };
 

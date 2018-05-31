@@ -13,4 +13,4 @@ export const GET_REPO_DETAIL = 'get_repo_detail';
 export const GET_REPO_BRANCHES = 'get_repo_branches';
 export const GET_USER_DETAIL = 'get_user_detail';
 export const GET_USER_REPO_LIST = 'get_user_repo_list';
-export const RESET_USER_REPO_LIST = 'reset_user_repo_list';
+export const RESET_DETAIL_INFO = 'reset_detail_info';

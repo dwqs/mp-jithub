@@ -94,7 +94,8 @@
 
         methods: {
             ...mapActions([
-                'getUserDefailtInfo'
+                'getUserDefailtInfo',
+                'resetData'
             ]),
             getUserInfo () {
                 // 调用登录接口
@@ -145,6 +146,10 @@
             this.getUserInfo();
             this.loading = true;
             this.getUserDefailtInfo(this.username).then(this.resetLoading).catch(this.resetLoading);
+        },
+
+        onUnload () {
+            this.resetData(1);
         }
     };
 </script>

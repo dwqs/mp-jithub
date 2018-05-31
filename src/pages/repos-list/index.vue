@@ -130,7 +130,7 @@
         },
 
         onUnload () {
-            this.resetData();
+            this.resetData(3);
         }
     };
 </script>

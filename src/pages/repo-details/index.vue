@@ -105,7 +105,8 @@
         methods: {
             ...mapActions([
                 'getRepoDetailInfo',
-                'getRepoBranches'
+                'getRepoBranches',
+                'resetData'
             ]),
             getUserInfo () {
                 // 调用登录接口
@@ -172,6 +173,10 @@
             this.loading = true;
             this.getRepoDetailInfo(this.repo).then(this.resetLoading).catch(this.resetLoading);
             this.getRepoBranches(this.repo).then(this.resetLoading).catch(this.resetLoading);
+        },
+
+        onUnload () {
+            this.resetData(2);
         }
     };
 </script>
