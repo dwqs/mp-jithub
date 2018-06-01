@@ -23,6 +23,8 @@ export const token = 'github personal token'; // 详见: https://developer.githu
 然后 `npm run dev`, 用微信开发者工具打开 `dist` 目录。
 ## 更新日志
 
+#### 1.1.2
+* 支持以截图形式查看仓库的 README
 #### 1.1.0
 
 * Trending 和 Ranking 支持点击查看详情
