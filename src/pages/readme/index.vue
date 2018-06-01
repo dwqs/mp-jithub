@@ -78,7 +78,7 @@
             }
         },
 
-        onShow () {
+        mounted () {
             const { username, reponame } = this.$root.$mp.query;
             wx.showLoading({
                 title: '正在截图...',
