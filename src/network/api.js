@@ -53,5 +53,10 @@ export default {
             ...auth
         });
         return res;
+    },
+
+    async getReadmePic (payload) {
+        const res = await network.get('/jithub/readme', payload);
+        return res;
     }
 };
