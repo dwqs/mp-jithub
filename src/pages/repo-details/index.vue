@@ -68,6 +68,16 @@
                 </span>
             </div>
         </div>
+        <div class="repo-basic-info">
+            <div class="common-flex">
+                <span class="flex-item with-padding" @click="viewReadme">
+                    README
+                    <span class="more-info">
+                        <i class="right-arrow"></i>
+                    </span>
+                </span>
+            </div>
+        </div>
         <loading v-if="loading"></loading>
     </div>
 </template>
@@ -106,7 +116,10 @@
             ...mapActions([
                 'getRepoDetailInfo',
                 'getRepoBranches',
-                'resetData'
+                'resetData',
+                'getRepoReadmePic',
+                'setLoadingStatus',
+                'resetContent'
             ]),
             getUserInfo () {
                 // 调用登录接口
@@ -140,6 +153,13 @@
                         url: `../user-details/user-details?username=${this.repoInfo['owner'].login}`
                     });
                 }
+            },
+
+            viewReadme () {
+                const { username, reponame } = this.repo;
+                wx.navigateTo({
+                    url: `../readme/readme?username=${username}&reponame=${reponame}`
+                });
             }
         },
 
@@ -173,10 +193,13 @@
             this.loading = true;
             this.getRepoDetailInfo(this.repo).then(this.resetLoading).catch(this.resetLoading);
             this.getRepoBranches(this.repo).then(this.resetLoading).catch(this.resetLoading);
+            this.setLoadingStatus(true);
+            this.getRepoReadmePic(this.repo);
         },
 
         onUnload () {
             this.resetData(2);
+            this.resetContent(1);
         }
     };
 </script>
