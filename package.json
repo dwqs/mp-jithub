@@ -19,6 +19,10 @@
         "mpvue": "^1.0.12",
         "vuex": "^3.0.1"
     },
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:dwqs/mp-jithub.git"
+    },
     "devDependencies": {
         "@commitlint/cli": "^6.1.3",
         "@commitlint/config-angular": "^6.1.3",
