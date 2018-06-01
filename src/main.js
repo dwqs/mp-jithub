@@ -18,7 +18,8 @@ export default {
             'pages/rank/rank',
             'pages/repo-details/repo-details',
             'pages/user-details/user-details',
-            'pages/repos-list/repos-list'
+            'pages/repos-list/repos-list',
+            'pages/readme/readme'
         ],
         window: {
             backgroundTextStyle: 'light',
