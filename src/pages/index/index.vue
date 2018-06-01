@@ -35,15 +35,10 @@
                 </div>
             </li>
         </ul>
-        <div class="jithub-list empty-data" v-if="!trending.repos.length && !trending.loading">
-            <h3 class="empty-title">
-                It looks like we don’t have any trending repositories for {{trending.lang}}.
-            </h3>
-            <p class="empty-desc">
-                If you create a {{trending.lang}} repository on Github, you can really own the place.<br/>
-                We’d even let it slide if you started calling yourself the mayor.
-            </p>
-        </div>
+        <empty :shown="!trending.repos.length && !trending.loading" 
+            :desc="`If you create a ${trending.lang} repository on Github, you can really own the place.<br/>We’d even let it slide if you started calling yourself the mayor`"
+            :title="`It looks like we don’t have any trending repositories for ${trending.lang}`">
+        </empty>
         <loading v-if="trending.loading"></loading>
     </div>
 </template>
@@ -53,6 +48,7 @@
     import { mapActions, mapGetters } from 'vuex';
 
     import loading from '@src/components/loading/index.vue';
+    import empty from '@src/components/empty/index.vue';
     // #365
     // import refresh from '@src/components/refresh/index.vue';
 
@@ -67,7 +63,8 @@
         },
 
         components: {
-            loading
+            loading,
+            empty
         },
 
         computed: {

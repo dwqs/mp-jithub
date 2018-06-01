@@ -40,15 +40,7 @@
                 <img src="/static/images/refresh.png" alt="refresh">正在加载...
             </div>
         </div>
-        <div class="jithub-list empty-data" v-if="!ranking.items.length && !ranking.loading">
-            <h3 class="empty-title">
-                No Data.
-            </h3>
-            <p class="empty-desc">
-                Maybe some error thing was happened.<br/>
-                You can sumbit a issue at https://github.com/dwqs/mp-jithub/issues.
-            </p>
-        </div>
+        <empty :shown="!ranking.items.length && !ranking.loading" ></empty>
         <loading v-if="ranking.loading"></loading>
     </div>
 </template>
@@ -58,6 +50,7 @@
     import { mapActions, mapGetters } from 'vuex';
 
     import loading from '@src/components/loading/index.vue';
+    import empty from '@src/components/empty/index.vue';
 
     export default {
         data () {
@@ -69,7 +62,8 @@
         },
 
         components: {
-            loading
+            loading,
+            empty
         },
 
         computed: {
