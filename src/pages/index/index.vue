@@ -58,7 +58,7 @@
                 userInfo: {},
                 refreshing: false,
                 dates: ['daily', 'weekly', 'monthly'],
-                version: '1.1.0'
+                version: '1.1.2'
             };
         },
 
@@ -163,7 +163,7 @@
                 if (!v || v !== this.version) {
                     wx.showModal({
                         title: '',
-                        content: '列表页支持点击查看仓库详情和用户详情了',
+                        content: '支持查看仓库的 README 文件了',
                         showCancel: false,
                         confirmText: '我知道了'
                     });
