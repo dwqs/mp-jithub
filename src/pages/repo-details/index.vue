@@ -121,18 +121,6 @@
                 'setLoadingStatus',
                 'resetContent'
             ]),
-            getUserInfo () {
-                // 调用登录接口
-                wx.login({
-                    success: () => {
-                        wx.getUserInfo({
-                            success: (res) => {
-                                this.userInfo = res.userInfo;
-                            }
-                        });
-                    }
-                });
-            },
 
             load () {
                 this.loaded = true;
@@ -189,7 +177,6 @@
         },
 
         mounted () {
-            this.getUserInfo();
             this.loading = true;
             this.getRepoDetailInfo(this.repo).then(this.resetLoading).catch(this.resetLoading);
             this.getRepoBranches(this.repo).then(this.resetLoading).catch(this.resetLoading);

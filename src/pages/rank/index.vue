@@ -97,19 +97,6 @@
                 }
             },
 
-            getUserInfo () {
-                // 调用登录接口
-                wx.login({
-                    success: () => {
-                        wx.getUserInfo({
-                            success: (res) => {
-                                this.userInfo = res.userInfo;
-                            }
-                        });
-                    }
-                });
-            },
-
             setLanguages () {
                 if (!this.next) {
                     wx.navigateTo({
@@ -136,10 +123,6 @@
 
         created () {
             this.getRankingData();
-        },
-
-        mounted () {
-            this.getUserInfo();
         }
     };
 </script>

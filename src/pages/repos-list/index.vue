@@ -70,18 +70,6 @@
                 'getUserRepos',
                 'resetData'
             ]),
-            getUserInfo () {
-                // 调用登录接口
-                wx.login({
-                    success: () => {
-                        wx.getUserInfo({
-                            success: (res) => {
-                                this.userInfo = res.userInfo;
-                            }
-                        });
-                    }
-                });
-            },
 
             lower () {
                 if (this.pageInfo.isAll) {
@@ -115,7 +103,6 @@
         },
 
         mounted () {
-            this.getUserInfo();
             wx.setNavigationBarTitle({
                 title: this.userDetails.login
             });

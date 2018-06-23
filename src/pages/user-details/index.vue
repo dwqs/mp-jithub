@@ -96,19 +96,7 @@
             ...mapActions([
                 'getUserDefailtInfo',
                 'resetData'
-            ]),
-            getUserInfo () {
-                // 调用登录接口
-                wx.login({
-                    success: () => {
-                        wx.getUserInfo({
-                            success: (res) => {
-                                this.userInfo = res.userInfo;
-                            }
-                        });
-                    }
-                });
-            },
+            ]),            
 
             load () {
                 this.loaded = true;
@@ -143,7 +131,6 @@
         },
 
         mounted () {
-            this.getUserInfo();
             this.loading = true;
             this.getUserDefailtInfo(this.username).then(this.resetLoading).catch(this.resetLoading);
         },
