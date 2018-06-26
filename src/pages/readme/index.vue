@@ -1,39 +1,33 @@
 <template>
     <div class="repo-readme-wrap">
-        <img @click="preview" class="readme-img" v-show="loaded" :style="{height: size.height + 'rpx'}" 
-            :src="pic.url" @error="loadError" @load="loadImg">
-        <empty :shown="!loading && !!pic.error" :desc="pic.error"></empty>
-        <empty :shown="error" desc="内容加载失败"></empty>   
+        <rich-text v-if="!error" :nodes="nodes"></rich-text>   
+        <empty :shown="error" :desc="msg"></empty>   
     </div>
 </template>
 
 <script>
     import './index.less';
     import { mapActions, mapGetters } from 'vuex';
+    import 'prismjs/themes/prism.css';
+    import MpvueMarkdownParser from 'mpvue-markdown-parser';
+    import 'mpvue-markdown-parser/dist/index.css';
+
+    import { Base64 } from 'js-base64';
 
     import empty from '@src/components/empty/index.vue';
 
     export default {
         data () {
             return {
-                // image
-                size: {
-                    
-                },
                 error: false,
-                loaded: false
+                loading: false,
+                nodes: [],
+                msg: '内容加载失败'
             };
         },
 
         components: {
             empty
-        },
-
-        computed: {
-            ...mapGetters({
-                pic: 'getReadmePic',
-                loading: 'getLoadingStatus'
-            })
         },
 
         watch: {
@@ -46,55 +40,45 @@
 
         methods: {
             ...mapActions([
-                'resetContent',
-                'getRepoReadmePic',
-                'setLoadingStatus'
+                'getRepoReadme'
             ]),
 
             resetLoading () {
                 this.loading = false;
-            },
-
-            loadImg (e) {
-                this.size = {
-                    width: e.target.width,
-                    height: e.target.height
-                };
-                this.loaded = true;
-            },
-
-            loadError () {
-                this.loaded = false;
-                this.error = true;
-            },
-
-            preview () {
-                if (this.loaded) {
-                    wx.previewImage({
-                        current: this.pic.url, // 当前显示图片的http链接
-                        urls: [this.pic.url] // 需要预览的图片http链接列表
-                    });
-                }
             }
         },
 
         mounted () {
             const { username, reponame } = this.$root.$mp.query;
             wx.showLoading({
-                title: '正在截图...',
+                title: '正在加载...',
                 mask: true
             });
-            if (!this.loading) {
-                this.setLoadingStatus(true);
-                this.getRepoReadmePic({
-                    username,
-                    reponame
-                });
-            }
+
+            this.loading = true;
+            this.getRepoReadme({
+                username,
+                reponame
+            }).then((res) => {
+                if (res.statusCode === 404) {
+                    this.error = true;
+                    this.loading = false;
+                    this.msg = 'There is no README.md file in this repository';
+                    return;
+                }
+                const md = Base64.decode(res.data.content);
+                this.nodes = MpvueMarkdownParser(md);
+                this.loading = false;
+            }).catch(e => {
+                this.error = true;
+                this.loading = false;
+            });
         },
 
         onUnload () {
-            this.resetContent(1);
+            this.nodes = [];
+            this.error = false;
+            this.loading = false;
         }
     };
 </script>

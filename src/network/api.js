@@ -55,8 +55,10 @@ export default {
         return res;
     },
 
-    async getReadmePic (payload) {
-        const res = await network.get('/jithub/readme', payload);
+    async getRepoReadme (payload) {
+        // const res = await network.get('/jithub/readme', payload);
+        const { username, reponame } = payload;
+        const res = await network.get(`/repos/${username}/${reponame}/contents/README.md`)
         return res;
     }
 };

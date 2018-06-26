@@ -4,16 +4,13 @@ import * as CONSTANT from '../mutation-types';
 import api from '@src/network/api';
 
 const state = {
-    readmePic: {
-        error: '',
-        url: ''
-    },
+    readme: [],
     loading: false
 };
 
 const getters = {
-    getReadmePic (state) {
-        return state.readmePic;
+    getReadme (state) {
+        return state.readme;
     },
 
     getLoadingStatus (state) {
@@ -29,16 +26,10 @@ const actions = {
         });
     },
 
-    resetContent ({ commit }, payload) {
-        commit({
-            type: CONSTANT.RESET_REPO_CONTENTS,
-            res: payload
-        });
-    },
-
-    async getRepoReadmePic ({ commit }, payload) {
-        const [err, res] = await awaitTo(api.getReadmePic(payload));
-        if (!err && res.data.code === 0) {
+    async getRepoReadme ({ commit }, payload) {
+        const [err, res] = await awaitTo(api.getRepoReadme(payload));
+        
+        if (!err) {
             commit({
                 type: CONSTANT.GET_REPO_CONTENTS,
                 res: 1,
@@ -64,16 +55,11 @@ const mutations = {
 
     [CONSTANT.RESET_REPO_CONTENTS] (state, payload) {
         if (payload.res === 1) {
-            state.readmePic = {
-                error: '',
-                url: ''
-            };
         }
     },
     [CONSTANT.GET_REPO_CONTENTS] (state, payload) {
         if (payload.contents) {
             if (payload.res === 1) {
-                state.readmePic = payload.contents;
                 state.loading = false;
             }
         }

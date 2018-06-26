@@ -116,10 +116,7 @@
             ...mapActions([
                 'getRepoDetailInfo',
                 'getRepoBranches',
-                'resetData',
-                'getRepoReadmePic',
-                'setLoadingStatus',
-                'resetContent'
+                'resetData'
             ]),
 
             load () {
@@ -180,13 +177,10 @@
             this.loading = true;
             this.getRepoDetailInfo(this.repo).then(this.resetLoading).catch(this.resetLoading);
             this.getRepoBranches(this.repo).then(this.resetLoading).catch(this.resetLoading);
-            this.setLoadingStatus(true);
-            this.getRepoReadmePic(this.repo);
         },
 
         onUnload () {
             this.resetData(2);
-            this.resetContent(1);
         }
     };
 </script>
