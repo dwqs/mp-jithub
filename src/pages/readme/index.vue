@@ -60,15 +60,22 @@
                 username,
                 reponame
             }).then((res) => {
+                this.loading = false;
                 if (res.statusCode === 404) {
                     this.error = true;
-                    this.loading = false;
                     this.msg = 'There is no README.md file in this repository';
                     return;
                 }
+
+                if (res.data.size > 35000) {
+                    // 太大了 不渲染
+                    this.error = true;
+                    this.msg = `The README.md file is too large, visit https://github.com/${username}/${reponame} on pc, please.`;
+                    return;
+                }
+
                 const md = Base64.decode(res.data.content);
                 this.nodes = MpvueMarkdownParser(md);
-                this.loading = false;
             }).catch(e => {
                 this.error = true;
                 this.loading = false;
