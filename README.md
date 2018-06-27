@@ -23,6 +23,9 @@ export const token = 'github personal token'; // 详见: https://developer.githu
 然后 `npm run dev`, 用微信开发者工具打开 `dist` 目录。
 ## 更新日志
 
+#### 1.1.6
+* fix 因 README 内容过大而导致的界面卡顿现象
+
 #### 1.1.5
 * 优化仓库 README.md 文件的查看
 
