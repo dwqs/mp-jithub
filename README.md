@@ -43,5 +43,8 @@ export const token = 'github personal token'; // 详见: https://developer.githu
 * Trending 列表页展示
 * Trending 列表页支持语言过滤
 
+## Markdown 解析
+* [mpvue-markdown-parser](https://github.com/dwqs/mpvue-markdown-parser)
+
 ## LICENSE
 MIT
