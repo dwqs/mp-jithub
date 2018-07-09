@@ -25,7 +25,8 @@ export default {
             backgroundTextStyle: 'light',
             navigationBarBackgroundColor: '#FFFFFF',
             navigationBarTitleText: 'Jithub',
-            navigationBarTextStyle: 'black'
+            navigationBarTextStyle: 'black',
+            navigationStyle: 'custom'
         },
         tabBar: {
             color: '#7A7E83',
