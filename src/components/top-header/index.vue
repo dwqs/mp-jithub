@@ -31,6 +31,9 @@
             pageNavigation () {
                 if (this.isIndex) {
                     // 跳到设置页
+                    wx.navigateTo({
+                        url: '../setting/setting'
+                    });
                 }
 
                 if (this.back) {
