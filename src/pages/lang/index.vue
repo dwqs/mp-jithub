@@ -49,7 +49,7 @@
             })
         },
 
-        components:{
+        components: {
             topHeader
         },
 
@@ -75,6 +75,17 @@
                     this.setLang(this.selectedLang === 'All Languages' ? '' : this.selectedLang);
                 } else if (this.from === 'ranking') {
                     this.setRankLang(this.selectedLang === 'All Languages' ? '' : this.selectedLang);
+                } else if (this.from === 'setting') {
+                    try {
+                        wx.setStorageSync('lang', lang);
+                    } catch (e) {
+                        wx.showModal({
+                            title: '',
+                            content: '设置默认语言出错了',
+                            showCancel: false,
+                            confirmText: '我知道了'
+                        });
+                    }
                 }
                 wx.navigateBack({
                     delta: 1
@@ -104,7 +115,15 @@
         onShow () {
             if (this.$root.$mp.query.from) {
                 this.from = this.$root.$mp.query.from;
-                this.selectedLang = this.from === 'trending' ? this.trending.lang : this.ranking.lang;
+                if (this.from === 'trending' || this.from === 'ranking') {
+                    this.selectedLang = this.from === 'trending' ? this.trending.lang : this.ranking.lang;
+                } else if (this.from === 'setting') {
+                    try {
+                        this.selectedLang = wx.getStorageSync('lang');
+                    } catch (e) {
+
+                    }
+                }
             }
         }
     };
