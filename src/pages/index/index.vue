@@ -1,6 +1,7 @@
 <template>
     <div class="trending-wrap">
         <!-- <refresh v-if="refreshing"></refresh> -->
+        <top-header :isIndex="true"></top-header>
         <div class="show-query-info">
             <span class="picker lang" @click="setLanguages">{{trending.lang ? trending.lang : 'All languages'}}</span>
             <span class="picker picker-icon large-margin"></span>
@@ -49,6 +50,7 @@
 
     import loading from '@src/components/loading/index.vue';
     import empty from '@src/components/empty/index.vue';
+    import topHeader from '@src/components/top-header/index.vue';
     // #365
     // import refresh from '@src/components/refresh/index.vue';
 
@@ -64,7 +66,8 @@
 
         components: {
             loading,
-            empty
+            empty,
+            topHeader
         },
 
         computed: {

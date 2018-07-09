@@ -1,5 +1,6 @@
 <template>
     <div class="trending-langs-page">
+        <top-header title="Select Language" :back="true"></top-header>
         <div class="lang-filter">
             <input class="filter-text" type="text" 
                 @input="valChange"
@@ -26,6 +27,8 @@
     import langs from 'gitlang';
     import { mapActions, mapGetters } from 'vuex';
 
+    import topHeader from '@src/components/top-header/index.vue';
+
     export default {
         data () {
             const allLangs = [].concat('All Languages', langs);
@@ -44,6 +47,10 @@
                 trending: 'getTrendingState',
                 ranking: 'getRankingState'
             })
+        },
+
+        components:{
+            topHeader
         },
 
         watch: {

@@ -1,5 +1,6 @@
 <template>
     <div class="github-rank-wrap">
+        <top-header title="Ranking in China"></top-header>
         <div class="show-query-info">
             <span class="picker lang" @click="setLanguages">{{ranking.lang ? ranking.lang : 'All languages'}}</span>
             <span class="picker picker-icon large-margin"></span>
@@ -51,6 +52,7 @@
 
     import loading from '@src/components/loading/index.vue';
     import empty from '@src/components/empty/index.vue';
+    import topHeader from '@src/components/top-header/index.vue';
 
     export default {
         data () {
@@ -63,7 +65,8 @@
 
         components: {
             loading,
-            empty
+            empty,
+            topHeader
         },
 
         computed: {
