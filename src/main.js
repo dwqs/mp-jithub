@@ -22,7 +22,8 @@ export default {
             'pages/repo-details/repo-details',
             'pages/user-details/user-details',
             'pages/repos-list/repos-list',
-            'pages/readme/readme'
+            'pages/readme/readme',
+            'pages/setting/setting'
         ],
         window: {
             backgroundTextStyle: 'light',
