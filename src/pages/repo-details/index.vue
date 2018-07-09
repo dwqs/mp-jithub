@@ -87,9 +87,7 @@
     import { mapActions, mapGetters } from 'vuex';
 
     import loading from '@src/components/loading/index.vue';
-    // #365
-    // import rightArrow from '@src/components/right-arrow/index.vue';
-
+    
     export default {
         data () {
             return {
