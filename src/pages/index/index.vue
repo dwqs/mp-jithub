@@ -156,7 +156,11 @@
         created () {
             this.getUserInfo();
             // this.setTrendingLoading(true);
-            this.getTrendingRepos();
+            if (this.trending.lang) {
+                this.filterTrendingRepos();
+            } else {
+                this.getTrendingRepos();
+            }
         },
 
         mounted () {
