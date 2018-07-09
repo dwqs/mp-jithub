@@ -3,6 +3,9 @@ import App from './app';
 import store from './vuex/index';
 import './common.less';
 
+import 'prismjs/themes/prism.css';
+import 'mpvue-markdown-parser/dist/index.css';
+
 Vue.prototype.$store = store;
 Vue.config.productionTip = false;
 App.mpType = 'app';

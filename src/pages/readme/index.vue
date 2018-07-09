@@ -7,10 +7,9 @@
 
 <script>
     import './index.less';
+    
     import { mapActions, mapGetters } from 'vuex';
-    import 'prismjs/themes/prism.css';
     import MpvueMarkdownParser from 'mpvue-markdown-parser';
-    import 'mpvue-markdown-parser/dist/index.css';
 
     import { Base64 } from 'js-base64';
 
