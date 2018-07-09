@@ -19,3 +19,6 @@ export const RESET_DETAIL_INFO = 'reset_detail_info';
 export const RESET_REPO_CONTENTS = 'reset_repo_content';
 export const GET_REPO_CONTENTS = 'get_repo_content';
 export const SET_LOADING_STATUS = 'set_loading_status';
+
+// setting
+export const SAVE_SETTING = 'save_setting';
