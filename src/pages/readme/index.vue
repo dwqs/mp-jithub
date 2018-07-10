@@ -1,19 +1,21 @@
 <template>
     <div class="repo-readme-wrap">
-        <rich-text v-if="!error" :nodes="nodes"></rich-text>   
-        <empty :shown="error" :desc="msg"></empty>   
+        <top-header title="README" :back="true"></top-header>
+        <div class="readme-content">
+            <rich-text v-if="!error" :nodes="nodes"></rich-text>   
+            <empty :shown="error" :desc="msg"></empty>   
+        </div>
     </div>
 </template>
 
-<script>
-    import './index.less';
-    
+<script>    
     import { mapActions, mapGetters } from 'vuex';
     import MpvueMarkdownParser from 'mpvue-markdown-parser';
 
     import { Base64 } from 'js-base64';
 
     import empty from '@src/components/empty/index.vue';
+    import topHeader from '@src/components/top-header/index.vue';
 
     export default {
         data () {
@@ -26,7 +28,8 @@
         },
 
         components: {
-            empty
+            empty,
+            topHeader
         },
 
         watch: {
@@ -88,3 +91,13 @@
         }
     };
 </script>
+
+<style>
+    .readme-content {
+        margin-top: 125rpx;
+    }
+
+    .readme-img {
+        width: 100%;
+    }
+</style>
