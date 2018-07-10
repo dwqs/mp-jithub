@@ -35,3 +35,33 @@ export const formatSize = size => {
 
     return 'Too Large';
 };
+
+export const setStorageSync = (key, value, error) => {
+    try {
+        wx.setStorageSync(key, value);
+    } catch (e) {
+        if (error) {
+            wx.showModal({
+                title: '',
+                content: error,
+                showCancel: false,
+                confirmText: '我知道了'
+            });
+        }
+    }
+};
+
+export const getStorageSync = (key, error) => {
+    try {
+        return wx.getStorageSync(key);
+    } catch (e) {
+        if (error) {
+            wx.showModal({
+                title: '',
+                content: error,
+                showCancel: false,
+                confirmText: '我知道了'
+            });
+        }
+    }
+};

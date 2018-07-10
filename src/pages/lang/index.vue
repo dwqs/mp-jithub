@@ -27,6 +27,7 @@
     import langs from 'gitlang';
     import { mapActions, mapGetters } from 'vuex';
 
+    import { setStorageSync, getStorageSync } from '@src/utils/index';
     import topHeader from '@src/components/top-header/index.vue';
 
     export default {
@@ -76,16 +77,7 @@
                 } else if (this.from === 'ranking') {
                     this.setRankLang(this.selectedLang === 'All Languages' ? '' : this.selectedLang);
                 } else if (this.from === 'setting') {
-                    try {
-                        wx.setStorageSync('lang', lang);
-                    } catch (e) {
-                        wx.showModal({
-                            title: '',
-                            content: '设置默认语言出错了',
-                            showCancel: false,
-                            confirmText: '我知道了'
-                        });
-                    }
+                    setStorageSync('lang', lang, '设置默认语言出错了');
                 }
                 wx.navigateBack({
                     delta: 1
@@ -118,11 +110,7 @@
                 if (this.from === 'trending' || this.from === 'ranking') {
                     this.selectedLang = this.from === 'trending' ? this.trending.lang : this.ranking.lang;
                 } else if (this.from === 'setting') {
-                    try {
-                        this.selectedLang = wx.getStorageSync('lang');
-                    } catch (e) {
-
-                    }
+                    this.selectedLang = getStorageSync('lang');
                 }
             }
         }
