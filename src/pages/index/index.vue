@@ -155,11 +155,11 @@
 
         created () {
             this.getUserInfo();
-            // this.setTrendingLoading(true);
-            if (this.trending.lang) {
+            const { lang, since } = this.trending;
+            if (lang) {
                 this.filterTrendingRepos();
             } else {
-                this.getTrendingRepos();
+                this.getTrendingRepos(since ? { since } : {});
             }
         },
 
