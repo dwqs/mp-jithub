@@ -49,8 +49,7 @@
 </template>
 
 <script>
-    import { mapActions, mapGetters } from 'vuex';
-
+    import { setStorageSync, getStorageSync } from '@src/utils/index';
     import topHeader from '@src/components/top-header/index.vue';
 
     export default {
@@ -59,21 +58,15 @@
                 dates: ['daily', 'weekly', 'monthly'],
                 lang: '',
                 val: 0,
-                since: ''
+                since: 'daily'
             };
         },
 
         methods: {
-            ...mapActions([
-                'saveSetting',
-                'filterTrendingReposBySetting',
-                'setTrendingLoading'
-            ]),
-
             dateChange (e) {
                 this.val = e.mp.detail.value;
                 this.since = this.dates[this.val];
-                wx.setStorageSync('since', this.since);
+                setStorageSync('since', this.since);
             },
 
             setDefLang () {
@@ -83,28 +76,22 @@
             }
         },
 
-        computed: {
-            ...mapGetters({
-                trending: 'getTrendingState'
-            })
-        },
-
         components: {
             topHeader
         },
 
         onShow () {
-            this.lang = this.trending.lang;
-            this.since = this.trending.since;
-            const index = this.dates.indexOf(this.trending.since);
-            this.val = index > -1 ? index : 0;
-        },
+            if (getStorageSync('lang')) {
+                const l = getStorageSync('lang');
+                this.lang = l === 'All Languages' ? '' : l;
+            }
 
-        onUnload () {
-            this.saveSetting({
-                lang: this.lang ? this.lang : '',
-                since: this.since ? this.since : 'daily'
-            });
+            if (getStorageSync('since')) {
+                this.since = getStorageSync('since');
+            }
+
+            const index = this.dates.indexOf(this.since);
+            this.val = index > -1 ? index : 0;
         }
     };
 </script>
@@ -140,9 +127,6 @@
         &.no-margin {
             margin: 0;
             border-top: 1rpx solid #e1e4e8;
-        }
-        .setting-picker { 
-            
         }
     }
 
