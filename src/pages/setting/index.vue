@@ -40,7 +40,7 @@
                 <div class="setting-flex no-margin">
                     当前版本
                     <span class="more-info">
-                        v1.1.6
+                        v1.2.0
                     </span>
                 </div>
             </div>
