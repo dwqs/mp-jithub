@@ -1,5 +1,6 @@
 <template>
     <div class="user-repos-list-wrap">
+        <top-header :title="title" :back="true"></top-header>
         <div class="jithub-list user-repos-list" v-if="reposList.length">
             <scroll-view class="repos-scroll-view" scroll-y @scrolltolower="lower" enable-back-to-top :lower-threshold="150">
                 <li class="user-repo" v-for="(repo, index) in reposList" :key="index" @click="enterRepoDetail(repo)">
@@ -41,6 +42,7 @@
 
     import loading from '@src/components/loading/index.vue';
     import empty from '@src/components/empty/index.vue';
+    import topHeader from '@src/components/top-header/index.vue';
 
     export default {
         data () {
@@ -54,7 +56,8 @@
 
         components: {
             loading,
-            empty
+            empty,
+            topHeader
         },
 
         computed: {
@@ -62,7 +65,11 @@
                 reposList: 'getUserRepoList',
                 userDetails: 'getUserInfo',
                 pageInfo: 'getPageInfo'
-            })
+            }),
+
+            title () {
+                return `${this.userDetails.login}` || 'Jithub';
+            }
         },
 
         methods: {

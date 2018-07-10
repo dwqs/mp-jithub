@@ -1,5 +1,6 @@
 <template>
     <div class="user-details-page">
+        <top-header :title="title" :back="true"></top-header>
         <div class="common-flex user-summary">
             <div class="summary-item user-avatar">
                 <img v-show="loaded && userDetails['avatar_url']" :src="userDetails['avatar_url']" @load="load">
@@ -70,6 +71,7 @@
     import { mapActions, mapGetters } from 'vuex';
 
     import loading from '@src/components/loading/index.vue';
+    import topHeader from '@src/components/top-header/index.vue';
 
     export default {
         data () {
@@ -82,14 +84,19 @@
         },
 
         components: {
-            loading
+            loading,
+            topHeader
         },
 
         computed: {
             ...mapGetters({
                 userDetails: 'getUserInfo',
                 branches: 'getBranches'
-            })
+            }),
+
+            title () {
+                return `${this.username}` || 'Jithub';
+            }
         },
 
         methods: {
@@ -124,9 +131,6 @@
 
         onShow () {
             const { username } = this.$root.$mp.query;
-            wx.setNavigationBarTitle({
-                title: `${username}` || 'Jithub'
-            });
             this.username = username;
         },
 

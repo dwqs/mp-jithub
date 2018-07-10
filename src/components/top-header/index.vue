@@ -52,14 +52,13 @@
         position: fixed;
         z-index: 999;
         box-sizing: border-box;
-        border: 1rpx solid red;
         display: flex;
         align-items: center;
         padding-top: 45rpx;
         top: 0;
         left: 0;
         right: 0;
-        height: 115rpx;
+        height: 125rpx;
         font-size: 36rpx;
         background: #fff;
     }

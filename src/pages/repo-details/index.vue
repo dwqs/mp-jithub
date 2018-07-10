@@ -1,5 +1,6 @@
 <template>
     <div class="repo-details-page">
+        <top-header :title="title" :back="true"></top-header>
         <div class="common-flex repo-summary">
             <div class="summary-item repo-owner-avatar">
                 <img v-show="loaded && repoInfo['avatar_url']" :src="repoInfo['avatar_url']" @load="load">
@@ -87,6 +88,7 @@
     import { mapActions, mapGetters } from 'vuex';
 
     import loading from '@src/components/loading/index.vue';
+    import topHeader from '@src/components/top-header/index.vue';
     
     export default {
         data () {
@@ -100,14 +102,19 @@
         },
 
         components: {
-            loading
+            loading,
+            topHeader
         },
 
         computed: {
             ...mapGetters({
                 repoInfo: 'getRepoDetailState',
                 branches: 'getBranches'
-            })
+            }),
+
+            title () {
+                return `${this.repo.username}` || 'Jithub';
+            }
         },
 
         methods: {
@@ -165,10 +172,9 @@
                 username,
                 reponame
             };
-            
-            wx.setNavigationBarTitle({
-                title: `${username} / ${reponame}` || 'Jithub'
-            });
+            // wx.setNavigationBarTitle({
+            //     title: `${username} / ${reponame}` || 'Jithub'
+            // });
         },
 
         mounted () {
