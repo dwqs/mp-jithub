@@ -59,8 +59,7 @@
             return {
                 userInfo: {},
                 refreshing: false,
-                dates: ['daily', 'weekly', 'monthly'],
-                version: '1.1.2'
+                dates: ['daily', 'weekly', 'monthly']
             };
         },
 
@@ -154,30 +153,12 @@
         },
 
         created () {
-            this.getUserInfo();
+            // this.getUserInfo();
             const { lang, since } = this.trending;
             if (lang) {
                 this.filterTrendingRepos();
             } else {
                 this.getTrendingRepos(since ? { since } : {});
-            }
-        },
-
-        mounted () {
-            // 版本检测
-            try {
-                const v = wx.getStorageSync('version');
-                if (!v || v !== this.version) {
-                    wx.showModal({
-                        title: '',
-                        content: '支持查看仓库的 README 文件了',
-                        showCancel: false,
-                        confirmText: '我知道了'
-                    });
-                    wx.setStorageSync('version', this.version);
-                }
-            } catch (e) {
-
             }
         }
     };
