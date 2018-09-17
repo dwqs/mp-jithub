@@ -23,6 +23,9 @@ export const token = 'github personal token'; // 详见: https://developer.githu
 然后 `npm run dev`, 用微信开发者工具打开 `dist` 目录。
 ## 更新日志
 
+#### 1.2.2
+* 修复对 code 标签的解析
+
 #### 1.2.0
 * 增加设置页面，允许设置 Trending 页的默认语言和周期
 * 去掉版本的提示
