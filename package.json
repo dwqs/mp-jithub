@@ -18,7 +18,7 @@
         "gitlang": "^1.0.1",
         "js-base64": "^2.4.5",
         "mpvue": "^1.0.12",
-        "mpvue-markdown-parser": "^1.0.2",
+        "mpvue-markdown-parser": "^1.0.5",
         "vuex": "^3.0.1"
     },
     "repository": {
